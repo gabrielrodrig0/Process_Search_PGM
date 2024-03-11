@@ -1,0 +1,63 @@
+* {
+    box-sizing: border-box;
+    padding: 0 0;
+    margin: 0 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    padding: 10px;
+}
+
+#title {
+    margin-bottom: 10px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#tribunais_superiores, #justica_federal, #justica_estadual, #justica_do_trabalho, #justica_eleitoral, #justica_militar{
+    margin-left: 30px;
+    display: none;
+}
+
+#tribunais_superiores li, #justica_federal li, #justica_estadual li, #justica_do_trabalho li, #justica_eleitoral li, #justica_militar li {
+    cursor: pointer;
+    margin-bottom: 10px;
+    list-style: none;
+    border: 1px solid #868686;
+    border-radius: 5px;
+    padding: 5px;
+    width: 500px;
+    color: #000;  
+
+}
+.buscar_form_ts input, .buscar_form_jf input, .buscar_form_je input, .buscar_form_jt input, .buscar_form_jel input, .buscar_form_jm input {
+    padding: 5px;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.buscar_form_ts button, .buscar_form_jf button, .buscar_form_je button, .buscar_form_jt button, .buscar_form_jel button, .buscar_form_jm button {
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#tribunais_superiores li:hover, #justica_federal li:hover, #justica_estadual li:hover, #justica_do_trabalho li:hover, #justica_eleitoral li:hover, #justica_militar li:hover {
+   background-color: #F2F5FA;
+   transition: 500ms;
+   color:#868686;
+}
+
+.form_li_ts, .form_li_jf, .form_li_je, .form_li_jt, .form_li_jel, .form_li_jm {   
+    border:none !important;
+}
+
+label span{
+    cursor: pointer;
+    padding: 5px;
+}
