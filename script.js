@@ -16,3 +16,5 @@ labels.forEach(function(label) {
         toggleTribunais(label);
     });
 });
+
+
