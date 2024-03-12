@@ -39,7 +39,6 @@ li {
     align-item: center;
 }
 
-
 .buscar_form_ts input, .buscar_form_jf input, .buscar_form_je input, .buscar_form_jt input, .buscar_form_jel input, .buscar_form_jm input {
     padding: 5px;
     border-radius: 5px;
@@ -51,6 +50,6 @@ li {
     border-radius: 5px;
 }
 
-.form_li_ts, .form_li_jf, .form_li_je, .form_li_jt, .form_li_jel, .form_li_jm {   
-    border:none !important;
+.option {
+    display:block;
 }

@@ -178,10 +178,11 @@
     <script src="script.js"></script>
     <script src="script2.js"></script>
     <script>
-        const botao = document.querySelector(".buscar");
+    
+    const botao = document.querySelector(".buscar");
 
     async function enviar() {
-    const apiUrl = localStorage.getItem('apiUrl');
+    const apiUrl = await localStorage.getItem('apiUrl');
 
     if (!apiUrl) {
         console.error("Nenhuma opção selecionada!");
@@ -189,7 +190,6 @@
     }
 
     const numeroProcesso = document.querySelector('.processo').value;
-    console.log(numeroProcesso)
 
     try {
         const response = await fetch(apiUrl, {
@@ -211,7 +211,6 @@
             throw new Error('Erro na requisição.');
         }
 
-        console.log(numeroProcesso);
         const data = await response.json();
         console.log('Dados recebidos:', data);
 
