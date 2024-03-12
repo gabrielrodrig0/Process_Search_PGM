@@ -243,7 +243,13 @@
             throw new Error('Erro na requisição.');
         }
 
+       
         const data = await response.json();
+        if(data.hits.max_score==null){
+            alert("Processo não encontrado!")
+            return;
+        }
+
         console.log('Dados recebidos:', data);
 
         let optitle = document.querySelector('.title-opt');
