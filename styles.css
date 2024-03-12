@@ -8,7 +8,7 @@
 body {
     width: 100%;
     height: 100vh;
-    margin: 0; /* Add this line */
+    margin: 0; 
 }
 
 #title {
@@ -39,7 +39,8 @@ li {
 #justica_militar li div label
 {
     display: flex;
-    align-item: center;
+    align-items: center;
+    gap:5px;
 }
 
 .buscar_form_ts input, .buscar_form_jf input, .buscar_form_je input, .buscar_form_jt input, .buscar_form_jel input, .buscar_form_jm input {

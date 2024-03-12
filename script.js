@@ -27,3 +27,17 @@ function fecharModal() {
     var modal = document.querySelector('.modal');
     modal.classList.remove('active');
 }
+
+//Radio
+
+const radios = document.querySelectorAll('input[type="radio"]');
+
+radios.forEach(radio => {
+    radio.addEventListener('click', () => {
+        radios.forEach(otherRadio => {
+            if (otherRadio !== radio) {
+                otherRadio.checked = false;
+            }
+        });
+    });
+});
