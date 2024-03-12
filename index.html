@@ -21,8 +21,8 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_stj/_search"><input type="radio" name="tribunais_superiores" value="tsj"> Tribunal Superior de Justiça</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_stm/_search"><input type="radio" name="tribunais_superiores" value="tsm"> Tribunal Superior Militar</label>
                     <br/>
-                    <!-- <input type="text" class="processo" placeholder="Digite o número do processo aqui"> -->
-                    <button class="buscar" onclick="enviar">Buscar</button>
+                    <input type="text" class="processo1" placeholder="Digite o número do processo aqui">
+                    <button class="buscar" onclick="enviar('ts')">Buscar</button>
                 </div>
             </li>
         </ul>
@@ -38,8 +38,8 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_trf5/_search"><input type="radio" name="justica_federal" value="trf5">Tribunal Regional Federal da 5ª Região</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_trf6/_search"><input type="radio" name="justica_federal" value="trf6">Tribunal Regional Federal da 6ª Região</label>
                     <br/>
-                    <input type="text" class="processo" placeholder="Digite o número do processo aqui">
-                    <button class="buscar" onclick="enviar()">Buscar</button>
+                    <input type="text" class="processo2" placeholder="Digite o número do processo aqui">
+                    <button class="buscar" onclick="enviar('jf')">Buscar</button>
                 </div>
             </li>
         </ul>
@@ -47,7 +47,7 @@
         <label for="justica_estadual" class="label1"><span>▼</span> Justiça Estadual</label>
         <ul id="justica_estadual">
             <li class="form_li_je"> 
-                <form class="buscar_form_je">
+                <div class="buscar_form_je">
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjac/_search"><input type="radio" name="justica_estadual" value="tsac">Tribunal de Justiça do Acre</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjal/_search"><input type="radio" name="justica_estadual" value="tsal">Tribunal de Justiça de Alagoas</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjam/_search"><input type="radio" name="justica_estadual" value="tsam">Tribunal de Justiça do Amazonas</label>
@@ -76,9 +76,9 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjsp/_search"><input type="radio" name="justica_estadual" value="tssp">Tribunal de Justiça de São Paulo</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjto/_search"><input type="radio" name="justica_estadual" value="tjto">Tribunal de Justiça do Tocantins</label>
                     <br/>
-                    <!-- <input type="text" class="processo" placeholder="Digite o número do processo aqui"> -->
-                    <button class="buscar" onclick="enviar()">Buscar</button>
-                </form>
+                    <input type="text" class="processo3" placeholder="Digite o número do processo aqui">
+                    <button class="buscar" onclick="enviar('je')">Buscar</button>
+                </div>
             </li>
         </ul>
 
@@ -111,8 +111,8 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_trt23/_search"><input type="radio" name="justica_do_trabalho" value="trt23">Tribunal Regional do Trabalho da 23ª Região</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_trt24/_search"><input type="radio" name="justica_do_trabalho" value="trt24">Tribunal Regional do Trabalho da 24ª Região</label>
                     <br/>
-                    <!-- <input type="text" placeholder="Digite o número do processo aqui"> -->
-                    <button class="buscar" onclick="enviar()">Buscar</button>
+                    <input type="text" class="processo4" placeholder="Digite o número do processo aqui">
+                    <button class="buscar" onclick="enviar('jt')">Buscar</button>
                 </div>
             </li>
         </ul>
@@ -129,7 +129,7 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tre-ap/_search"><input type="radio" name="justica_eleitoral" value="treap">Tribunal Regional Eleitoral do Amapá</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tre-ba/_search"><input type="radio" name="justica_eleitoral" value="treba">Tribunal de Justiça da Bahia</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tre-ce/_search"><input type="radio" name="justica_eleitoral" value="trece">Tribunal Regional Eleitoral do Ceará</label>
-                    <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tre-dft/_search"><input type="radio" name="justica_eleitoral" value="tredft">TJ do Distrito Federal e Territórios</label>
+                    <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tre-dft/_search"><input type="radio" name="justica_eleitoral"value="tredft">TJ do Distrito Federal e Territórios</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tre-es/_search"><input type="radio" name="justica_eleitoral" value="trees">Tribunal Regional Eleitoral do Espírito Santo</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tre-go/_search"><input type="radio" name="justica_eleitoral" value="trego">Tribunal Regional Eleitoral do Goiás</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tre-ma/_search"><input type="radio" name="justica_eleitoral" value="trema">Tribunal Regional Eleitoral do Maranhão</label>
@@ -151,8 +151,8 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tre-sp/_search"><input type="radio" name="justica_eleitoral" value="tresp">Tribunal Regional Eleitoral de São Paulo</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tre-to/_search"><input type="radio" name="justica_eleitoral" value="treto">Tribunal Regional Eleitoral do Tocantins</label>
                     <br/>
-                    <!-- <input type="text" placeholder="Digite o número do processo aqui"> -->
-                    <button class="buscar" onclick="enviar()">Buscar</button>
+                    <input type="text" class="processo5" placeholder="Digite o número do processo aqui">
+                    <button class="buscar" onclick="enviar('jel')">Buscar</button>
                 </div>
             </li>
         </ul>
@@ -166,8 +166,8 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjmrs/_search"><input type="radio" name="justica_militar" value="tjmrs">Tribunal Justiça Militar do Rio Grande do Sul</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjmsp/_search"><input type="radio" name="justica_militar" value="tjmsp">Tribunal Justiça Militar de São Paulo</label>
                     <br/>
-                    <!-- <input type="text" placeholder="Digite o número do processo aqui"> -->
-                    <button class="buscar" onclick="enviar()">Buscar</button>
+                    <input type="text" class="processo6" placeholder="Digite o número do processo aqui">
+                    <button class="buscar" onclick="enviar('jm')">Buscar</button>
                 </div>
             </li>
         </ul>
@@ -179,9 +179,32 @@
     <script src="script2.js"></script>
     <script>
     
-    const botao = document.querySelector(".buscar");
+    
+    
+    async function enviar(secao) {
 
-    async function enviar() {
+    let numeroProcesso;
+    switch (secao) {
+        case 'ts':
+        numeroProcesso = await document.querySelector('.processo1').value;
+        break;
+        case 'jf':
+        numeroProcesso = await document.querySelector('.processo2').value;
+        break;
+        case 'je':
+        numeroProcesso = await document.querySelector('.processo3').value;
+        break;
+        case 'jt':
+        numeroProcesso = await document.querySelector('.processo4').value;
+        break;
+        case 'jel':
+        numeroProcesso = await document.querySelector('.processo5').value;
+        break;
+        case 'jm':
+        numeroProcesso = await document.querySelector('.processo6').value;
+        break;
+    }    
+
     const apiUrl = await localStorage.getItem('apiUrl');
     console.log(apiUrl);
 
@@ -189,8 +212,6 @@
         console.error("Nenhuma opção selecionada!");
         return;
     }
-
-    const numeroProcesso = await document.querySelector('.processo').value;
 
     try {
         const response = await fetch(apiUrl, {
