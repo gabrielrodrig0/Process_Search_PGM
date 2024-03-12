@@ -21,7 +21,7 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_stj/_search"><input type="radio" name="tribunais_superiores" value="tsj"> Tribunal Superior de Justiça</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_stm/_search"><input type="radio" name="tribunais_superiores" value="tsm"> Tribunal Superior Militar</label>
                     <br/>
-                    <input type="text" class="processo" placeholder="Digite o número do processo aqui">
+                    <!-- <input type="text" class="processo" placeholder="Digite o número do processo aqui"> -->
                     <button class="buscar" onclick="enviar">Buscar</button>
                 </div>
             </li>
@@ -76,7 +76,7 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjsp/_search"><input type="radio" name="justica_estadual" value="tssp">Tribunal de Justiça de São Paulo</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjto/_search"><input type="radio" name="justica_estadual" value="tjto">Tribunal de Justiça do Tocantins</label>
                     <br/>
-                    <input type="text" class="processo" placeholder="Digite o número do processo aqui">
+                    <!-- <input type="text" class="processo" placeholder="Digite o número do processo aqui"> -->
                     <button class="buscar" onclick="enviar()">Buscar</button>
                 </form>
             </li>
@@ -111,7 +111,7 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_trt23/_search"><input type="radio" name="justica_do_trabalho" value="trt23">Tribunal Regional do Trabalho da 23ª Região</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_trt24/_search"><input type="radio" name="justica_do_trabalho" value="trt24">Tribunal Regional do Trabalho da 24ª Região</label>
                     <br/>
-                    <input type="text" placeholder="Digite o número do processo aqui">
+                    <!-- <input type="text" placeholder="Digite o número do processo aqui"> -->
                     <button class="buscar" onclick="enviar()">Buscar</button>
                 </div>
             </li>
@@ -151,7 +151,7 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tre-sp/_search"><input type="radio" name="justica_eleitoral" value="tresp">Tribunal Regional Eleitoral de São Paulo</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tre-to/_search"><input type="radio" name="justica_eleitoral" value="treto">Tribunal Regional Eleitoral do Tocantins</label>
                     <br/>
-                    <input type="text" placeholder="Digite o número do processo aqui">
+                    <!-- <input type="text" placeholder="Digite o número do processo aqui"> -->
                     <button class="buscar" onclick="enviar()">Buscar</button>
                 </div>
             </li>
@@ -166,7 +166,7 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjmrs/_search"><input type="radio" name="justica_militar" value="tjmrs">Tribunal Justiça Militar do Rio Grande do Sul</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjmsp/_search"><input type="radio" name="justica_militar" value="tjmsp">Tribunal Justiça Militar de São Paulo</label>
                     <br/>
-                    <input type="text" placeholder="Digite o número do processo aqui">
+                    <!-- <input type="text" placeholder="Digite o número do processo aqui"> -->
                     <button class="buscar" onclick="enviar()">Buscar</button>
                 </div>
             </li>
@@ -183,13 +183,14 @@
 
     async function enviar() {
     const apiUrl = await localStorage.getItem('apiUrl');
+    console.log(apiUrl);
 
     if (!apiUrl) {
         console.error("Nenhuma opção selecionada!");
         return;
     }
 
-    const numeroProcesso = document.querySelector('.processo').value;
+    const numeroProcesso = await document.querySelector('.processo').value;
 
     try {
         const response = await fetch(apiUrl, {
@@ -201,7 +202,7 @@
             body: JSON.stringify({
                 "query": {
                     "match": {
-                        "numeroProcesso": numeroProcesso
+                        "numeroProcesso": numeroProcesso,
                     }
                 }
             })
