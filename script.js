@@ -19,3 +19,11 @@ labels.forEach(function(label) {
         event.stopPropagation(); 
     });
 });
+
+
+//Abrir e fechar modal
+
+function fecharModal() {
+    var modal = document.querySelector('.modal');
+    modal.classList.remove('active');
+}

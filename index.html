@@ -9,6 +9,16 @@
 </head>
 
 <body>
+    <div class="modal" onclick="fecharModal()">
+        <div class="documento">
+            <h1 class="title-opt"></h1>
+            <ul>
+                <li class="opt1"></li>
+                <li class="opt2"></li>
+                <li class="opt3"></li>
+            </ul>
+        </div>
+    </div>
     <h1 id="title">PGM Process Search</h1>
     <section id="container">
         <label for="tribunais_superiores" class="label1" ><span>▼</span> Tribunais Superiores</label>
@@ -235,6 +245,22 @@
 
         const data = await response.json();
         console.log('Dados recebidos:', data);
+
+        let optitle = document.querySelector('.title-opt');
+        optitle.innerHTML = data.hits.hits[0]._source.classe.nome;
+
+        let opt1 = document.querySelector('.opt1');
+        opt1.innerHTML = data.hits.hits[0]._source.numeroProcesso;
+
+        let opt2 = document.querySelector('.opt2');
+        opt2.innerHTML = data.hits.hits[0]._source.tribunal;
+
+        let opt3 = document.querySelector('.opt3');
+        opt3.innerHTML = data.hits.hits[0]._source.dataAjuizamento;
+
+        let modal = await document.querySelector('.modal').classList.add('active');
+
+
 
     } catch (error) {
         console.error('Ocorreu um erro:', error);
