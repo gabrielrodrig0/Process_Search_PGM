@@ -1,6 +1,8 @@
+//Script para fazer o toggle dos tribunais
 function toggleTribunais(label) {
     var ul = label.nextElementSibling;
     var span = label.querySelector('span');
+
     if (ul.style.display === "none" || ul.style.display === "") {
         ul.style.display = "block";
         span.textContent = "▲";
@@ -10,11 +12,10 @@ function toggleTribunais(label) {
     }
 }
 
-var labels = document.querySelectorAll('label');
+var labels = document.querySelectorAll('.label1');
 labels.forEach(function(label) {
-    label.addEventListener('click', function() {
+    label.addEventListener('click', function(event) {
         toggleTribunais(label);
+        event.stopPropagation(); 
     });
 });
-
-
