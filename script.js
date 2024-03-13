@@ -20,14 +20,6 @@ labels.forEach(function(label) {
     });
 });
 
-
-//Abrir e fechar modal
-
-function fecharModal() {
-    var modal = document.querySelector('.modal');
-    modal.classList.remove('active');
-}
-
 //Radio
 
 const radios = document.querySelectorAll('input[type="radio"]');
@@ -41,3 +33,4 @@ radios.forEach(radio => {
         });
     });
 });
+

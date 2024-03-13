@@ -9,16 +9,7 @@
 </head>
 
 <body>
-    <div class="modal" onclick="fecharModal()">
-        <div class="documento">
-            <h1 class="title-opt"></h1>
-            <ul>
-                <li class="opt1"></li>
-                <li class="opt2"></li>
-                <li class="opt3"></li>
-            </ul>
-        </div>
-    </div>
+
     <h1 id="title">PGM Process Search</h1>
     <section id="container">
         <label for="tribunais_superiores" class="label1" ><span>▼</span> Tribunais Superiores</label>
@@ -31,7 +22,7 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_stj/_search"><input type="radio" name="tribunais_superiores" value="tsj"> Tribunal Superior de Justiça</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_stm/_search"><input type="radio" name="tribunais_superiores" value="tsm"> Tribunal Superior Militar</label>
                     <br/>
-                    <input type="text" class="processo1" placeholder="Digite o número do processo aqui">
+                    <input type="text" class="processo1" required placeholder="Digite o número do processo aqui">
                     <button class="buscar" onclick="enviar('ts')">Buscar</button>
                 </div>
             </li>
@@ -48,7 +39,7 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_trf5/_search"><input type="radio" name="justica_federal" value="trf5">Tribunal Regional Federal da 5ª Região</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_trf6/_search"><input type="radio" name="justica_federal" value="trf6">Tribunal Regional Federal da 6ª Região</label>
                     <br/>
-                    <input type="text" class="processo2" placeholder="Digite o número do processo aqui">
+                    <input type="text" class="processo2" required placeholder="Digite o número do processo aqui">
                     <button class="buscar" onclick="enviar('jf')">Buscar</button>
                 </div>
             </li>
@@ -86,7 +77,7 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjsp/_search"><input type="radio" name="justica_estadual" value="tssp">Tribunal de Justiça de São Paulo</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjto/_search"><input type="radio" name="justica_estadual" value="tjto">Tribunal de Justiça do Tocantins</label>
                     <br/>
-                    <input type="text" class="processo3" placeholder="Digite o número do processo aqui">
+                    <input type="text" class="processo3" required placeholder="Digite o número do processo aqui">
                     <button class="buscar" onclick="enviar('je')">Buscar</button>
                 </div>
             </li>
@@ -121,7 +112,7 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_trt23/_search"><input type="radio" name="justica_do_trabalho" value="trt23">Tribunal Regional do Trabalho da 23ª Região</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_trt24/_search"><input type="radio" name="justica_do_trabalho" value="trt24">Tribunal Regional do Trabalho da 24ª Região</label>
                     <br/>
-                    <input type="text" class="processo4" placeholder="Digite o número do processo aqui">
+                    <input type="text" class="processo4" required placeholder="Digite o número do processo aqui">
                     <button class="buscar" onclick="enviar('jt')">Buscar</button>
                 </div>
             </li>
@@ -161,7 +152,7 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tre-sp/_search"><input type="radio" name="justica_eleitoral" value="tresp">Tribunal Regional Eleitoral de São Paulo</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tre-to/_search"><input type="radio" name="justica_eleitoral" value="treto">Tribunal Regional Eleitoral do Tocantins</label>
                     <br/>
-                    <input type="text" class="processo5" placeholder="Digite o número do processo aqui">
+                    <input type="text" class="processo5" required placeholder="Digite o número do processo aqui">
                     <button class="buscar" onclick="enviar('jel')">Buscar</button>
                 </div>
             </li>
@@ -176,7 +167,7 @@
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjmrs/_search"><input type="radio" name="justica_militar" value="tjmrs">Tribunal Justiça Militar do Rio Grande do Sul</label>
                     <label class="option" data-api-url="https://api-publica.datajud.cnj.jus.br/api_publica_tjmsp/_search"><input type="radio" name="justica_militar" value="tjmsp">Tribunal Justiça Militar de São Paulo</label>
                     <br/>
-                    <input type="text" class="processo6" placeholder="Digite o número do processo aqui">
+                    <input type="text" class="processo6" required placeholder="Digite o número do processo aqui">
                     <button class="buscar" onclick="enviar('jm')">Buscar</button>
                 </div>
             </li>
@@ -188,7 +179,17 @@
     <script src="script.js"></script>
     <script src="script2.js"></script>
     <script>
-    
+    //Conversor de data
+
+    async function converterData(dataString) {
+        const meses = ['Janeiro','Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+        const data = await new Date(dataString);
+        const dia = await data.getDate();
+        const mes = await data.getMonth() + 1;
+        const ano = await data.getFullYear();
+
+        return `${dia} de ${meses[mes-1]} de ${ano}`;
+    }
     
     
     async function enviar(secao) {
@@ -223,6 +224,12 @@
         return;
     }
 
+    if(numeroProcesso=="")
+    {
+        alert("Todos os campos precisam ser preenchidos!");
+        return;
+    }
+
     try {
         const response = await fetch(apiUrl, {
             method: 'POST',
@@ -252,22 +259,12 @@
 
         console.log('Dados recebidos:', data);
 
-        let optitle = document.querySelector('.title-opt');
-        optitle.innerHTML = data.hits.hits[0]._source.classe.nome;
+        
+        let dataAjuizamento = await converterData(data.hits.hits[0]._source.dataAjuizamento)
 
-        let opt1 = document.querySelector('.opt1');
-        opt1.innerHTML = data.hits.hits[0]._source.numeroProcesso;
-
-        let opt2 = document.querySelector('.opt2');
-        opt2.innerHTML = data.hits.hits[0]._source.tribunal;
-
-        let opt3 = document.querySelector('.opt3');
-        opt3.innerHTML = data.hits.hits[0]._source.dataAjuizamento;
-
-        let modal = await document.querySelector('.modal').classList.add('active');
-
-
-
+        alert(`Nome: ${data.hits.hits[0]._source.classe.nome}\nNúmero: ${data.hits.hits[0]._source.numeroProcesso}\nTribunal: ${data.hits.hits[0]._source.tribunal}\nData de Ajuizamento: ${dataAjuizamento}`)
+       
+     
     } catch (error) {
         console.error('Ocorreu um erro:', error);
     }
