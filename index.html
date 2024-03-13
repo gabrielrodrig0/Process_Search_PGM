@@ -181,7 +181,8 @@
     <script>
     //Conversor de data
 
-    async function converterData(dataString) {
+    async function converterData(dataString) 
+    {
         const meses = ['Janeiro','Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
         const data = await new Date(dataString);
         const dia = await data.getDate();
@@ -192,10 +193,12 @@
     }
     
     
-    async function enviar(secao) {
+    async function enviar(secao) 
+    {
 
     let numeroProcesso;
-    switch (secao) {
+    switch (secao) 
+    {
         case 'ts':
         numeroProcesso = await document.querySelector('.processo1').value;
         break;
@@ -219,7 +222,8 @@
     const apiUrl = await localStorage.getItem('apiUrl');
     console.log(apiUrl);
 
-    if (!apiUrl) {
+    if (!apiUrl) 
+    {
         console.error("Nenhuma opção selecionada!");
         return;
     }
@@ -230,14 +234,19 @@
         return;
     }
 
-    try {
-        const response = await fetch(apiUrl, {
+    try 
+    {
+        const response = await fetch(apiUrl, 
+        {
             method: 'POST',
-            headers: {
+            headers: 
+            {
+
                 'Content-Type': 'application/json',
                 'Authorization': 'APIKey cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw==',
             },
-            body: JSON.stringify({
+            body: JSON.stringify(
+                {
                 "query": {
                     "match": {
                         "numeroProcesso": numeroProcesso,
@@ -246,13 +255,15 @@
             })
         });
 
-        if (!response.ok) {
+        if (!response.ok) 
+        {
             throw new Error('Erro na requisição.');
         }
 
        
         const data = await response.json();
-        if(data.hits.max_score==null){
+        if(data.hits.max_score==null)
+        {
             alert("Processo não encontrado!")
             return;
         }
@@ -265,7 +276,8 @@
         alert(`Nome: ${data.hits.hits[0]._source.classe.nome}\nNúmero: ${data.hits.hits[0]._source.numeroProcesso}\nTribunal: ${data.hits.hits[0]._source.tribunal}\nData de Ajuizamento: ${dataAjuizamento}`)
        
      
-    } catch (error) {
+    } catch (error) 
+    {
         console.error('Ocorreu um erro:', error);
     }
 };

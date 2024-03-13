@@ -1,9 +1,11 @@
 //Script para fazer o toggle dos tribunais
-function toggleTribunais(label) {
+function toggleTribunais(label) 
+{
     var ul = label.nextElementSibling;
     var span = label.querySelector('span');
 
-    if (ul.style.display === "none" || ul.style.display === "") {
+    if (ul.style.display === "none" || ul.style.display === "") 
+    {
         ul.style.display = "block";
         span.textContent = "▲";
     } else {
@@ -13,8 +15,10 @@ function toggleTribunais(label) {
 }
 
 var labels = document.querySelectorAll('.label1');
-labels.forEach(function(label) {
-    label.addEventListener('click', function(event) {
+labels.forEach(function(label) 
+{
+    label.addEventListener('click', function(event) 
+    {
         toggleTribunais(label);
         event.stopPropagation(); 
     });
@@ -24,10 +28,14 @@ labels.forEach(function(label) {
 
 const radios = document.querySelectorAll('input[type="radio"]');
 
-radios.forEach(radio => {
-    radio.addEventListener('click', () => {
-        radios.forEach(otherRadio => {
-            if (otherRadio !== radio) {
+radios.forEach(radio => 
+    {
+    radio.addEventListener('click', () => 
+    {
+        radios.forEach(otherRadio => 
+            {
+            if (otherRadio !== radio) 
+            {
                 otherRadio.checked = false;
             }
         });
