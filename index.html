@@ -219,6 +219,9 @@
         break;
     }    
 
+    numeroProcesso = numeroProcesso.replace(/[.\-\/]/g,'')
+    console.log(numeroProcesso);
+
     const apiUrl = await localStorage.getItem('apiUrl');
     console.log(apiUrl);
 
