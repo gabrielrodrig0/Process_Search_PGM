@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js">
     <title>Process Search PGM</title>
    
 </head>
@@ -178,7 +179,9 @@
     </section>
     <script src="script.js"></script>
     <script src="script2.js"></script>
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
+    <script>   
+
     //Conversor de data
 
     async function converterData(dataString) 
@@ -233,7 +236,12 @@
 
     if(numeroProcesso=="")
     {
-        alert("Todos os campos precisam ser preenchidos!");
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Todos os campos precisam ser preenchidos!",
+        });   
+
         return;
     }
 
@@ -267,7 +275,11 @@
         const data = await response.json();
         if(data.hits.max_score==null)
         {
-            alert("Processo não encontrado!")
+            Swal.fire({
+            icon: "question",
+            title: "Processo não encontrado",
+            text: "Confira se o número do processo está correto e se está no tribunal correto",
+        });   
             return;
         }
 
@@ -275,10 +287,12 @@
 
         
         let dataAjuizamento = await converterData(data.hits.hits[0]._source.dataAjuizamento)
+    
+        Swal.fire({
+        title: `${data.hits.hits[0]._source.classe.nome}`,
+        html: `<p>Número: ${data.hits.hits[0]._source.numeroProcesso}</p><p>Tribunal: ${data.hits.hits[0]._source.tribunal}</p><p>Data de Ajuizamento: ${dataAjuizamento}</p>`
+        });   
 
-        alert(`Nome: ${data.hits.hits[0]._source.classe.nome}\nNúmero: ${data.hits.hits[0]._source.numeroProcesso}\nTribunal: ${data.hits.hits[0]._source.tribunal}\nData de Ajuizamento: ${dataAjuizamento}`)
-       
-     
     } catch (error) 
     {
         console.error('Ocorreu um erro:', error);
