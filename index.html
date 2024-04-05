@@ -184,13 +184,13 @@
 
     //Conversor de data
 
-    async function converterData(dataString) 
+    function converterData(dataString) 
     {
         const meses = ['Janeiro','Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
-        const data = await new Date(dataString);
-        const dia = await data.getDate();
-        const mes = await data.getMonth() + 1;
-        const ano = await data.getFullYear();
+        const data =  new Date(dataString);
+        const dia =  data.getDate();
+        const mes =  data.getMonth() + 1;
+        const ano =  data.getFullYear();
 
         return `${dia} de ${meses[mes-1]} de ${ano}`;
     }
@@ -244,9 +244,7 @@
         return;
     }
 
-  
     try {
-    // Mostra o modal de carregamento
     Swal.fire({
         title: 'Carregando...',
         allowOutsideClick: false,
@@ -266,16 +264,16 @@
         })
     });
 
+    console.log(response)
+
     if (!response.ok) {
-        // Esconde o modal de carregamento em caso de erro
         Swal.close();
-        console.log("ERRO BRUTAAAL");
+        console.log("Erro de servidor");
         throw new Error('Erro na requisição.');
     }
 
     const data = await response.json();
     if (data.hits.max_score == null) {
-        // Esconde o modal de carregamento se o processo não for encontrado
         Swal.close();
         Swal.fire({
             icon: "question",
@@ -287,13 +285,30 @@
 
     console.log('Dados recebidos:', data);
 
-    let dataAjuizamento = await converterData(data.hits.hits[0]._source.dataAjuizamento);
+    let dataAjuizamento = converterData(data.hits.hits[0]._source.dataAjuizamento);
+
+    let htmlContent = `<div style="overflow-y: scroll; max-height: 400px;">`;
+    data.hits.hits[0]._source.movimentos.forEach((movimento) => {
+        let dataHora = converterData(movimento.dataHora);
+        htmlContent += `<p><b>Movimento:</b> ${movimento.nome}</p>`;
+        htmlContent += `<p><b>Data e Hora:</b> ${dataHora}</p>`;
+        if (movimento.complementosTabelados && Array.isArray(movimento.complementosTabelados)) {
+            movimento.complementosTabelados.forEach((complemento) => {
+                htmlContent += `<p><b>${complemento.descricao}:</b> ${complemento.nome}</p>`;
+            });
+        }
+        htmlContent += `<br>`;
+        htmlContent += `<hr>`;
+        htmlContent += `<br>`;
+        });
+        htmlContent += `</div>`;
 
     // Esconde o modal de carregamento e exibe os dados do processo
     Swal.close();
     Swal.fire({
         title: `${data.hits.hits[0]._source.classe.nome}`,
-        html: `<p>Número: ${data.hits.hits[0]._source.numeroProcesso}</p><p>Tribunal: ${data.hits.hits[0]._source.tribunal}</p><p>Data de Ajuizamento: ${dataAjuizamento}</p>`
+        html: htmlContent
+      
     });
 
     } catch (error) {
