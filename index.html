@@ -194,8 +194,7 @@
 
         return `${dia} de ${meses[mes-1]} de ${ano}`;
     }
-    
-    
+
     async function enviar(secao) 
     {
 
@@ -245,53 +244,64 @@
         return;
     }
 
-    try 
-    {
-        const response = await fetch("http://localhost:3039/proxy", 
-        {
-            method: 'POST',
-            headers: 
-            {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                "numeroProcesso": numeroProcesso,
-                "url":apiUrl
-            })
-        });
-
-        if (!response.ok) 
-        {   
-            console.log("ERRO BRUTAAAL")
-            throw new Error('Erro na requisição.');
+  
+    try {
+    // Mostra o modal de carregamento
+    Swal.fire({
+        title: 'Carregando...',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
         }
+    });
 
-        const data = await response.json();
-        if(data.hits.max_score==null)
-        {
-            Swal.fire({
+    const response = await fetch("http://localhost:3039/proxy", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            "numeroProcesso": numeroProcesso,
+            "url": apiUrl
+        })
+    });
+
+    if (!response.ok) {
+        // Esconde o modal de carregamento em caso de erro
+        Swal.close();
+        console.log("ERRO BRUTAAAL");
+        throw new Error('Erro na requisição.');
+    }
+
+    const data = await response.json();
+    if (data.hits.max_score == null) {
+        // Esconde o modal de carregamento se o processo não for encontrado
+        Swal.close();
+        Swal.fire({
             icon: "question",
             title: "Processo não encontrado",
             text: "Confira se o número do processo está correto e se você está buscando no tribunal correto",
-        });   
-            return;
-        }
+        });
+        return;
+    }
 
-        console.log('Dados recebidos:', data);
+    console.log('Dados recebidos:', data);
 
-        
-        let dataAjuizamento = await converterData(data.hits.hits[0]._source.dataAjuizamento)
-    
-        Swal.fire({
+    let dataAjuizamento = await converterData(data.hits.hits[0]._source.dataAjuizamento);
+
+    // Esconde o modal de carregamento e exibe os dados do processo
+    Swal.close();
+    Swal.fire({
         title: `${data.hits.hits[0]._source.classe.nome}`,
         html: `<p>Número: ${data.hits.hits[0]._source.numeroProcesso}</p><p>Tribunal: ${data.hits.hits[0]._source.tribunal}</p><p>Data de Ajuizamento: ${dataAjuizamento}</p>`
-        });   
+    });
 
-    } catch (error) 
-    {
+    } catch (error) {
+        // Em caso de erro, exibe o erro no console
         console.error('Ocorreu um erro:', error);
-    }
-};
+    } 
+}
+
     </script>
 </body>
 </html>
